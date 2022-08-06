@@ -1,41 +1,17 @@
-import { createTheme, Stack, ThemeProvider } from "@mui/material";
-import { HomePage } from "./HomePage";
+import { Stack, ThemeProvider } from "@mui/material";
+import { Home } from "./Home";
+import { Theme } from "../Constants";
 
-const font =  "'Roboto', sans-serif";
-const theme = createTheme({
-  typography: {
-    fontFamily: font,
-    h1:
-    {
-      fontWeight: 600,
-      fontSize: 74,
-      color: "#DFE0E2"
-    },
-    h3:
-    {
-      fontWeight: 250,
-      fontSize: 36,
-      color: "#DFE0E2",
-    },
-    h4:
-    {
-      fontWeight: 350,
-      fontSize: 15,
-      color: "#DFE0E2",
-    }
-  }
-});
-
-export default function Home()
+export default function Main()
 {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={Theme}>
       <Stack
         height="100vh"
         justifyContent="center"
         alignItems="center"
       >
-        <HomePage/>
+        <Home/>
       </Stack>
     </ThemeProvider>
   );
