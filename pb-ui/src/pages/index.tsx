@@ -1,14 +1,18 @@
-import { Grid } from "@mui/material";
-import { HomePage } from "./Home/HomePage";
+import { Stack, ThemeProvider } from "@mui/material";
+import { Home } from "./Home";
+import { Theme } from "../Constants";
 
-export default function Home()
+export default function Main()
 {
   return (
-    <Grid container height={"100%"} width={"100%"}
-    >
-      <Grid item xs={12} xl={12}>
-        <HomePage/>
-      </Grid>
-    </Grid>
+    <ThemeProvider theme={Theme}>
+      <Stack
+        height="100vh"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Home/>
+      </Stack>
+    </ThemeProvider>
   );
 }
