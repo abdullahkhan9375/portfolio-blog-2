@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material";
 
-export const PRIMARY_COLOR = "#05668D";
-export const SECONDARY_COLOR = "#DFE0E2";
+export const PRIMARY_COLOR = "#E2DCDE";
+export const SECONDARY_COLOR = "#0B3142";
 export const Theme = createTheme({
   typography: {
     fontFamily: "'Roboto', sans-serif",

@@ -1,33 +1,10 @@
-import { Button, Stack, Typography } from "@mui/material";
-import Link from "next/link";
-import { SECONDARY_COLOR } from "../Constants";
-
-interface IPageButtonProps
-{
-    text: string;
-    link: string;
-}
+import { PageButton } from "@/common/PageButton";
+import { Stack, Typography } from "@mui/material";
 
 type THome = () => JSX.Element;
 
 export const Home: THome = () =>
 {
-    const PageButton = (aPageButtonProps: IPageButtonProps) =>
-    {
-        return (
-        <Link href={`/${aPageButtonProps.link}`}>
-            <Button
-                variant="outlined"
-                style={{ borderColor: SECONDARY_COLOR }}
-                size="small">
-                <Typography variant="h4">
-                    {aPageButtonProps.text}
-                </Typography>
-            </Button>
-        </Link>
-        );
-    };
-
     return (
         <Stack spacing={1}>
             <Stack>
