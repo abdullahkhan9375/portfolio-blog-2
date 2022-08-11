@@ -87,13 +87,11 @@ const Blog = () =>
         <Stack
             justifyContent="center"
             height={"100vh"}
-            alignItems="center"
-            spacing={10}>
-            <BlogPreview data={blogPreviews.slice(0, 3)}/>
+            alignItems="center">
             <Typography variant="h1">
-                The Sochmore Blog
+                The Sochmore Blog.
             </Typography>
-            <BlogPreview data={blogPreviews.slice(3, 6)}/>
+            <BlogPreview data={blogPreviews.slice(0, 3)}/>
         </Stack>
     );
 };

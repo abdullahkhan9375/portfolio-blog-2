@@ -12,7 +12,7 @@ export const BlogPreview = (aBlogPreviewProps: IBlogPreviewProps) =>
     const lBlogPreviews: IBlogPreview[] = aBlogPreviewProps.data;
 
     return (
-        <Stack direction="row" spacing={3}>
+        <Stack direction="column" spacing={1}>
             {
                  lBlogPreviews.map((aCard: IBlogPreview) =>
                 {

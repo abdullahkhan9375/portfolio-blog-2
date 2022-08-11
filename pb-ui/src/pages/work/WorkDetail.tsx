@@ -14,7 +14,7 @@ const WorkDetail = (aWorkDetailProps: IWorkDetailProps) =>
     const lDividerStyling: React.CSSProperties =
     {
         height: "190px",
-        width: "1px",
+        width: "0.3px",
         backgroundColor: SECONDARY_COLOR,
         alignSelf:"center",
     };
