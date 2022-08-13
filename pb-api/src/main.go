@@ -1,21 +1,29 @@
 package main
 
 import (
-	"fmt"
-	"log"
 	"net/http"
+	getblogpreviews "pb-api/src/get/blog"
+	getprojects "pb-api/src/get/projects"
+	getworkexperience "pb-api/src/get/work"
 
-	getresume "pb-api/src/get"
+	"github.com/gin-gonic/gin"
 )
 
-func handler(aWriter http.ResponseWriter, aReader *http.Request) {
-	fmt.Fprintf(aWriter, "Hi there")
-	fmt.Print(aReader)
-}
+// GET resume details
+
+// GET blog details page-wise.
+
+// GET Project details.
 
 func main() {
-	fmt.Println("Hello, world.")
-	http.HandleFunc("/", handler)
-	http.HandleFunc("/resume", getresume.GetResume)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	lRouter := gin.Default()
+
+	//GET all requests.
+	lRouter.GET("/", func(aContext *gin.Context) { aContext.JSON(http.StatusOK, "Hi") })
+	lRouter.GET("/work", getworkexperience.GetWorkExperience)
+	lRouter.GET("/projects", getprojects.GetProjects)
+	lRouter.GET("/blogpreviews", getblogpreviews.GetBlogPreviews)
+
+	// Run server.
+	lRouter.Run("localhost:8080")
 }
