@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
-import { IBlogPreview } from ".";
-import { SECONDARY_COLOR } from "@/Constants";
 import { PageButton } from "@/common/PageButton";
+import { IBlogPreview } from "@/model";
+import { SECONDARY_COLOR } from "@/Constants";
 
 interface IBlogCardProps extends IBlogPreview
 {
@@ -11,20 +11,25 @@ interface IBlogCardProps extends IBlogPreview
 export const BlogCard = (aBlogCardProps: IBlogCardProps) =>
 {
     return (
-        <div style={{ width: 680 }}>
-            <Stack padding={1} paddingBottom={3} direction="column" height={"100%"}
+        <div style={{ width: 680, minHeight: 60 }}>
+            <Stack padding={1} spacing={0.5} direction="column" height={"100%"}
             justifyContent="flex-start">
-                <Stack direction="row" justifyContent="space-between" alignItems="center">
-                    <Stack direction="column" alignItems="baseline">
-                        <Typography variant="h3">
-                            {aBlogCardProps.name}
-                        </Typography>
-                        <Typography variant="body2" style={{ opacity: 0.6 }}>
-                            {aBlogCardProps.timeToRead} min read | {aBlogCardProps.date}
-                        </Typography>
+                <div style={{ borderBottom: `0.01px solid ${SECONDARY_COLOR}` }}>
+                    <Stack direction="row" justifyContent="space-between" alignItems="baseline">
+                        <Stack direction="column">
+                            <Typography variant="h3">
+                                {aBlogCardProps.name}
+                            </Typography>
+                        </Stack>
+                        <PageButton text="Read 📖" link={"abc"} style={{
+                            paddingTop: 8,
+                            paddingBottom: 8,
+                        }}/>
                     </Stack>
-                    <PageButton text="Read 📖" link={"abc"}/>
-                </Stack>
+                    <Typography variant="body2" style={{ opacity: 0.6 }}>
+                    {aBlogCardProps.timeToRead} min read | {aBlogCardProps.date}
+                </Typography>
+                </div>
                 <Typography variant="body1">
                     {aBlogCardProps.description}
                 </Typography>

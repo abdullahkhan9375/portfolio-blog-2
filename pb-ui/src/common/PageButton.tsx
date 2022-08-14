@@ -6,6 +6,7 @@ interface IPageButtonProps
 {
     text: string;
     link: string;
+    style?: React.CSSProperties;
 }
 
 export const PageButton = (aPageButtonProps: IPageButtonProps) =>
@@ -14,7 +15,7 @@ export const PageButton = (aPageButtonProps: IPageButtonProps) =>
     <Link href={`/${aPageButtonProps.link}`}>
         <Button
             variant="outlined"
-            style={{ borderColor: SECONDARY_COLOR }} 
+            style={{ borderRadius: 0, borderColor: SECONDARY_COLOR, ...aPageButtonProps.style }} 
             size="small">
             <Typography variant="h4">
                 {aPageButtonProps.text}

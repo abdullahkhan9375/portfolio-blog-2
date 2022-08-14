@@ -2,17 +2,13 @@ package getblogpreviews
 
 import (
 	"net/http"
+	response "pb-api/model"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 var PAGINATION_LIMIT int8 = 4
-
-type ServerResponse struct {
-	Message string      `json:"message"`
-	Data    interface{} `json:"data"`
-}
 
 type BlogPreview struct {
 	Id          string   `json:"blogId"`
@@ -136,7 +132,7 @@ func GetBlogPreviews(aContext *gin.Context) {
 	pageNumber, err := strconv.Atoi(aContext.Param("page"))
 
 	if err != nil {
-		var lResponse = ServerResponse{
+		var lResponse = response.ServerResponse{
 			Message: "Bad Request.",
 			Data:    []string{},
 		}
@@ -146,7 +142,7 @@ func GetBlogPreviews(aContext *gin.Context) {
 
 	var lPaginationEnd = PAGINATION_LIMIT * int8(pageNumber)
 	if lPaginationEnd > int8(len(lBlogPreviews)+4) {
-		var lResponse = ServerResponse{
+		var lResponse = response.ServerResponse{
 			Message: "Page does not exist.",
 			Data:    []string{},
 		}
@@ -154,7 +150,7 @@ func GetBlogPreviews(aContext *gin.Context) {
 		return
 	}
 
-	var lResponse = ServerResponse{
+	var lResponse = response.ServerResponse{
 		Message: "Cool",
 		Data:    paginatedPayload(lBlogPreviews, int8(pageNumber)),
 	}

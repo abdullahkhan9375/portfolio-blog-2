@@ -1,10 +1,7 @@
 import { IBlogPreview, IBlogPreviewResponse } from "@/model";
 import { Stack, Typography } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { BlogPreview } from "./BlogPreview";
-
-type TOpinion = "Article" | "Opinion" | "Story" | "Memoir";
 
 const Blog = () =>
 {
@@ -38,8 +35,10 @@ const Blog = () =>
 
     useEffect(() =>
     {
-        (async() =>
-        { await getBlogPreviews(pageNumber); })();
+        ( async() =>
+        { 
+            await getBlogPreviews(pageNumber);
+        })();
 
     }, [pageNumber]);
 
@@ -59,7 +58,7 @@ const Blog = () =>
             <Typography variant="h1">
                 The Sochmore Blog.
             </Typography>
-            <BlogPreview data={blogPreviews.slice(0, 3)}/>
+            <BlogPreview data={blogPreviews}/>
         </Stack>
     );
 };

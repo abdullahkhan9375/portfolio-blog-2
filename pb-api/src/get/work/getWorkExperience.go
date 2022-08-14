@@ -2,6 +2,7 @@ package getworkexperience
 
 import (
 	"net/http"
+	response "pb-api/model"
 
 	"github.com/gin-gonic/gin"
 )
@@ -51,6 +52,12 @@ var lWorkExperiences = []WorkExperience{
 }
 
 func GetWorkExperience(aContext *gin.Context) {
-	// use aContext.JSON in prod. IndentedJSON is CPU intensive.
-	aContext.IndentedJSON(http.StatusOK, lWorkExperiences)
+	//TODO: use aContext.JSON in prod. IndentedJSON is CPU intensive.
+
+	var lResponse response.ServerResponse = response.ServerResponse{
+		Message: "Cool",
+		Data:    lWorkExperiences,
+	}
+
+	aContext.IndentedJSON(http.StatusOK, lResponse)
 }

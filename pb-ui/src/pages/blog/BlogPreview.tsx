@@ -1,5 +1,5 @@
-import { Stack } from "@mui/material";
-import { IBlogPreview } from ".";
+import { IBlogPreview } from "@/model";
+import { Box, LinearProgress, Stack } from "@mui/material";
 import { BlogCard } from "./BlogCard";
 
 interface IBlogPreviewProps
@@ -13,8 +13,11 @@ export const BlogPreview = (aBlogPreviewProps: IBlogPreviewProps) =>
 
     return (
         <Stack direction="column" spacing={1}>
-            {
-                 lBlogPreviews.map((aCard: IBlogPreview) =>
+            {lBlogPreviews.length === 0
+                ? <Box sx={{ width: 200, height: 20, paddingTop: 5 }}>
+                    <LinearProgress />
+                  </Box>
+                : lBlogPreviews.map((aCard: IBlogPreview) =>
                 {
                     return <BlogCard {...aCard}/>
                 })
