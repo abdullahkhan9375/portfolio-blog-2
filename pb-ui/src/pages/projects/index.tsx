@@ -2,16 +2,6 @@ import { Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import ProjectAccordion from "./ProjectAccordion";
 
-export interface IProject
-{
-    id: string;
-    name: string;
-    description: string;
-    features: string[];
-    techStack: string[];
-    links: string[];
-}
-
 const Projects = () =>
 {
     // TODO: Add local storage support.

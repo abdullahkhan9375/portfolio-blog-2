@@ -1,79 +1,47 @@
+import { IBlogPreview, IBlogPreviewResponse } from "@/model";
 import { Stack, Typography } from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { BlogPreview } from "./BlogPreview";
 
 type TOpinion = "Article" | "Opinion" | "Story" | "Memoir";
 
-export interface IBlogPreview
-{
-    name: string;
-    description: string;
-    keyword: string;
-    genre: TOpinion;
-    date: string;
-    timeToRead: number;
-}
-
 const Blog = () =>
 {
     const [blogPreviews, setBlogPreviews] = useState<IBlogPreview[]>([]);
+    const [pageNumber, setPageNumber] = useState<number>(1);
 
-    const callApi: IBlogPreview[] =
-    [
+    const getBlogPreviews = async(aPageNumber: number = 1) =>
+    {
+        let lResponse: IBlogPreviewResponse | undefined = undefined;
+        try
         {
-            name: "Post 1",
-            description: "The first blog post I have ever written wow.",
-            keyword: "cool",
-            genre: "Opinion",
-            date: "2022-01-01",
-            timeToRead: 5,
-        },
-        {
-            name: "Post 2",
-            description: "The second blog post I have ever written wow.",
-            keyword: "cool",
-            genre: "Story",
-            date: "2022-03-01",
-            timeToRead: 10,
-        },
-        {
-            name: "Post 3",
-            description: "The third blog post I have ever written wow.",
-            keyword: "cool",
-            genre: "Article",
-            date: "2022-05-01",
-            timeToRead: 15,
-        },
-        {
-            name: "Post 1",
-            description: "The first blog post I have ever written wow.",
-            keyword: "cool",
-            genre: "Opinion",
-            date: "2022-01-01",
-            timeToRead: 5,
-        },
-        {
-            name: "Post 2",
-            description: "The second blog post I have ever written wow.",
-            keyword: "cool",
-            genre: "Story",
-            date: "2022-03-01",
-            timeToRead: 10,
-        },
-        {
-            name: "Post 3",
-            description: "The third blog post I have ever written wow.",
-            keyword: "cool",
-            genre: "Article",
-            date: "2022-05-01",
-            timeToRead: 15,
+            const lRes = await fetch(`http://localhost:8080/blogpreviews/${aPageNumber}`);
+            lResponse = await lRes.json();
+            console.log(lResponse);
         }
-    ];
+        catch(err)
+        {
+            console.log("Error", err)
+        }
+    
+        // Create ALERTS for user actions.
+
+        if (lResponse === undefined)
+        {
+            console.log("error");
+            return;
+        }
+
+        setBlogPreviews(lResponse.data);
+    };
 
     useEffect(() =>
     {
-        setBlogPreviews(callApi);
-    }, []);
+        (async() =>
+        { await getBlogPreviews(pageNumber); })();
+
+    }, [pageNumber]);
 
     // Send a req to the API.
     // Get back blog previews.
