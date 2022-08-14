@@ -1,65 +1,46 @@
-import { Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import { IProject, IProjectResponse } from "@/model";
+import { Box, LinearProgress, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import ProjectAccordion from "./ProjectAccordion";
 
 const Projects = () =>
 {
     // TODO: Add local storage support.
     const [expandedProject, setExpandedProject] = useState<string>("Project-1");
+    const [projects, setProjects] = useState<IProject[]>([]);
 
-    const lDummyData: IProject[] =
-    [
+    const getProjects = async() =>
+    {
+        let lResponse: IProjectResponse | undefined = undefined;
+        try
         {
-            id: "Project-1",
-            name: "Notemaking App",
-            description: "Self-explanatory title.",
-            features: [
-                "React front-end",
-                "Randomized backgrounds from Unsplash",
-                "Mobile responsive",
-            ],
-            techStack:
-            [
-                "React",
-                "Netlify",
-                "Custom CSS",
-            ],
-            links: ["github link"],
-        },
-        {
-            id: "Project-2",
-            name: "Breaking Bad Quiz",
-            description: "Can you make pure meth?",
-            features: [
-                "React front-end",
-                "Fetch API to grab images from an open-source API",
-                "Fully mobile responsive.",
-            ],
-            techStack:
-            [
-                "React",
-                "Netlify",
-                "Custom CSS",
-            ],
-            links: ["github link"],
-        },
-        {
-            id: "Project-3",
-            name: "Google Apps vs Apple Apps",
-            description: "An appstore comparison.",
-            features: [
-                "Exploratory Data analysis that tells a story",
-                "Cutting edge python visualization libraries.",
-                "Hosted on and powered by Kaggle.",
-            ],
-            techStack:
-            [
-                "Plotly",
-                "Python",
-            ],
-            links: ["github link"],
+            const lRes = await fetch(`http://localhost:8080/projects`);
+            lResponse = await lRes.json();
+            console.log(lResponse);
         }
-    ];
+        catch(err)
+        {
+            console.log("Error", err)
+        }
+    
+        // Create ALERTS for user actions.
+
+        if (lResponse === undefined)
+        {
+            console.log("error");
+            return;
+        }
+
+        setProjects(lResponse.data);
+    };
+
+    useEffect(() =>
+    {
+        (async() =>
+        {
+            await getProjects();
+        })();
+    }, []);
 
     return (
         <Stack
@@ -73,15 +54,20 @@ const Projects = () =>
             </Typography>
             <Stack spacing={1}>
             {
-                lDummyData.map((aDummyData: IProject) =>
-                {
-                    return (
-                    <ProjectAccordion
-                        data={aDummyData}
-                        isExpanded={expandedProject === aDummyData.id}
-                        onExpanded={setExpandedProject}
-                    />)
-                })
+                projects.length === 0
+                    ? <Box sx={{ width: 200, height: 20, paddingTop: 5 }}>
+                        <LinearProgress />
+                    </Box>
+                    : projects.map((aData: IProject) =>
+                    {
+                        return (
+                        <ProjectAccordion
+                            data={aData}
+                            isExpanded={expandedProject === aData.id}
+                            onExpanded={setExpandedProject}
+                        />
+                        )
+                    })
             }
             </Stack>
         </Stack>

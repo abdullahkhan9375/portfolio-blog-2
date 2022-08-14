@@ -2,7 +2,7 @@ export interface IWorkExperience
 {
     company: string;
     position: string;
-    responsiblities: string[];
+    description: string[];
     fromDate: string;
     toDate: string;
 }

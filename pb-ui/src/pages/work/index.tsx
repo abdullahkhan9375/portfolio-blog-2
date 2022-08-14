@@ -1,56 +1,44 @@
-import { Stack, Typography } from "@mui/material";
+import { IWorkExperience, IWorkExperienceResponse } from "@/model";
+import { Box, LinearProgress, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import WorkDetail from "./WorkDetail";
-
-export interface IWorkExperience
-{
-    company: string;
-    position: string;
-    responsiblities: string[];
-    fromDate: string;
-    toDate: string;
-}
 
 const Work = () =>
 {
-    const lDummyData: IWorkExperience[] =
-    [
+    const [workData, setWorkData] = useState<IWorkExperience[]>([]);
+
+     const getWorkExperience = async() =>
+    {
+        let lResponse: IWorkExperienceResponse | undefined = undefined;
+        try
         {
-            company: "Proxima Capital",
-            position: "Junior SWE",
-            responsiblities:
-            [
-                "Worked in PAS",
-                "Had fun",
-                "Enjoyed free lunches",
-            ],
-            fromDate: "2022/01/04",
-            toDate: "Present",
-        },
+            const lRes = await fetch(`http://localhost:8080/work`);
+            lResponse = await lRes.json();
+            console.log(lResponse);
+        }
+        catch(err)
         {
-            company: "EY",
-            position: "PACE Developer",
-            responsiblities:
-            [
-                "Worked on Maskforce",
-                "Had fun",
-                "Team lead.",
-            ],
-            fromDate: "2021/06/01",
-            toDate: "2021/12/10",
-        },
+            console.log("Error", err)
+        }
+    
+        // Create ALERTS for user actions.
+
+        if (lResponse === undefined)
         {
-            company: "Hearing Power",
-            position: "Data Intern",
-            responsiblities:
-            [
-                "Worked on Tinnibot",
-                "Had fun",
-                "Enjoyed working from home.",
-            ],
-            fromDate: "2021/01/01",
-            toDate: "2022/05/01",
-        },
-    ];
+            console.log("error");
+            return;
+        }
+
+        setWorkData(lResponse.data);
+    };
+
+    useEffect(() =>
+    {
+        ( async () =>
+        {
+            await getWorkExperience();
+        })();
+    }, []);
 
     return (
         <Stack
@@ -63,10 +51,15 @@ const Work = () =>
             </Typography>
             <Stack 
             paddingTop={2}>
-                {lDummyData.map((aDummyData: IWorkExperience) =>
-                {
-                    return <WorkDetail data={aDummyData}/>
-                })}
+                {workData.length === 0
+                ? <Box sx={{ width: 200, height: 20, paddingTop: 5 }}>
+                    <LinearProgress />
+                  </Box>
+                : workData.map((aData: IWorkExperience) =>
+                    {
+                        return <WorkDetail data={aData}/>
+                    })
+                }
             </Stack>
         </Stack>
     )

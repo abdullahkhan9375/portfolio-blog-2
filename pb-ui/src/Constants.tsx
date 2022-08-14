@@ -23,5 +23,11 @@ export const Theme = createTheme({
       fontSize: 15,
       color: SECONDARY_COLOR,
     }
+  },
+  palette: {
+    primary:
+    {
+      main: SECONDARY_COLOR,
+    }
   }
 });

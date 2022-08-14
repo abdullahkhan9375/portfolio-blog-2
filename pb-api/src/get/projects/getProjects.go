@@ -2,6 +2,7 @@ package getprojects
 
 import (
 	"net/http"
+	response "pb-api/model"
 
 	"github.com/gin-gonic/gin"
 )
@@ -66,5 +67,9 @@ var lProjects = []Project{
 }
 
 func GetProjects(aContext *gin.Context) {
-	aContext.IndentedJSON(http.StatusOK, lProjects)
+	var lResponse response.ServerResponse = response.ServerResponse{
+		Message: "Cool",
+		Data:    lProjects,
+	}
+	aContext.IndentedJSON(http.StatusOK, lResponse)
 }

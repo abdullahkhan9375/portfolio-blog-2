@@ -1,6 +1,6 @@
 import { SECONDARY_COLOR } from "@/Constants";
-import { Accordion, AccordionDetails, AccordionSummary, Divider, Stack, Typography } from "@mui/material";
-import { IProject } from "."
+import { IProject } from "@/model";
+import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from "@mui/material";
 
 interface IProjectAccordionProps
 {
@@ -22,10 +22,9 @@ const ProjectAccordion = (aProjectAccordionProps: IProjectAccordionProps) =>
                 <Stack>
 
                 </Stack>
-                <Divider/>
                 <Stack>
                     { features.map((aFeature: string) => {
-                        return <Typography> * {aFeature} </Typography>}) }
+                        return <Typography> 👉 {aFeature} </Typography>}) }
                 </Stack>
             </Stack>
         )
@@ -37,7 +36,6 @@ const ProjectAccordion = (aProjectAccordionProps: IProjectAccordionProps) =>
         backgroundColor: "transparent",
         borderRadius: 0,
         border: `1px solid ${SECONDARY_COLOR}`,
-        
     }
 
     return (
