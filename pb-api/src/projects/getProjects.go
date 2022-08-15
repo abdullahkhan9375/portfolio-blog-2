@@ -7,13 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+type Tlink struct {
+	Name string `json:"name"`
+	Link string `json:"link"`
+}
+
 type Project struct {
 	Id          string   `json:"id"`
 	Name        string   `json:"name"`
 	Description string   `json:"description"`
 	Features    []string `json:"features"`
 	TechStack   []string `json:"techStack"`
-	Links       []string `json:"links"`
+	Links       *[]Tlink `json:"links"`
 }
 
 var lProjects = []Project{
@@ -29,9 +34,14 @@ var lProjects = []Project{
 		TechStack: []string{
 			"React",
 			"Netlify",
-			"Custom CSS",
+			"CSS",
 		},
-		Links: []string{"github link"},
+		Links: &[]Tlink{
+			{
+				Name: "Github",
+				Link: "https://github.com/abdullahkhan9375/Notemaker",
+			},
+		},
 	},
 	{
 		Id:          "Project-2",
@@ -45,9 +55,18 @@ var lProjects = []Project{
 		TechStack: []string{
 			"React",
 			"Netlify",
-			"Custom CSS",
+			"CSS",
 		},
-		Links: []string{"github link"},
+		Links: &[]Tlink{
+			{
+				Name: "Github",
+				Link: "https://github.com/abdullahkhan9375/breakingbadquiz",
+			},
+			{
+				Name: "Website",
+				Link: "https://breakingbadquiz.netlify.com",
+			},
+		},
 	},
 	{
 		Id:          "Project-3",
@@ -62,7 +81,12 @@ var lProjects = []Project{
 			"Plotly",
 			"Python",
 		},
-		Links: []string{"github link"},
+		Links: &[]Tlink{
+			{
+				Name: "Github",
+				Link: "https://github.com/abdullahkhan9375/GooglePlaystore-vs-AppleAppstore",
+			},
+		},
 	},
 }
 

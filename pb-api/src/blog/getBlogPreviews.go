@@ -2,8 +2,9 @@ package getblogpreviews
 
 import (
 	"net/http"
-	response "pb-api/model"
 	"strconv"
+
+	response "pb-api/model"
 
 	"github.com/gin-gonic/gin"
 )

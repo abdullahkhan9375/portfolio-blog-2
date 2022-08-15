@@ -1,3 +1,9 @@
+export type TLink =
+{
+    name: string;
+    link: string;
+};
+
 export interface IProject
 {
     id: string;
@@ -5,5 +11,5 @@ export interface IProject
     description: string;
     features: string[];
     techStack: string[];
-    links: string[];
+    links: TLink[];
 }
