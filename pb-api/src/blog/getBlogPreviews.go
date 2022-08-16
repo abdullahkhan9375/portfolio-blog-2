@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
-	response "pb-api/model"
+	response "github.com/abdullahkhan9375/portfolio-blog-2/pb-api/model"
 
 	"github.com/gin-gonic/gin"
 )

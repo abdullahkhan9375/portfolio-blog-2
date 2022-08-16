@@ -1,9 +1,9 @@
 package main
 
 import (
-	getblogpreviews "pb-api/src/blog"
-	getprojects "pb-api/src/projects"
-	getworkexperience "pb-api/src/work"
+	getblogpreviews "github.com/abdullahkhan9375/portfolio-blog-2/pb-api/src/blog"
+	getprojects "github.com/abdullahkhan9375/portfolio-blog-2/pb-api/src/projects"
+	getworkexperience "github.com/abdullahkhan9375/portfolio-blog-2/pb-api/src/work"
 
 	"github.com/gin-gonic/gin"
 )
