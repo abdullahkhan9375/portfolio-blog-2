@@ -63,7 +63,7 @@ const Projects = () =>
                         return (
                         <ProjectAccordion
                             data={aData}
-                            isExpanded={expandedProject === aData.id}
+                            isExpanded={expandedProject === aData.Name}
                             onExpanded={setExpandedProject}
                         />
                         )

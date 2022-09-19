@@ -18,7 +18,7 @@ export const BlogCard = (aBlogCardProps: IBlogCardProps) =>
                     <Stack direction="row" justifyContent="space-between" alignItems="baseline">
                         <Stack direction="column">
                             <Typography variant="h3">
-                                {aBlogCardProps.name}
+                                {aBlogCardProps.Name}
                             </Typography>
                         </Stack>
                         <PageButton text="Read 📖" link={"abc"} style={{
@@ -27,11 +27,11 @@ export const BlogCard = (aBlogCardProps: IBlogCardProps) =>
                         }}/>
                     </Stack>
                     <Typography variant="body2" style={{ opacity: 0.6 }}>
-                    {aBlogCardProps.timeToRead} min read | {aBlogCardProps.date}
+                    {aBlogCardProps.TimeToRead} min read | {aBlogCardProps.Date}
                 </Typography>
                 </div>
                 <Typography variant="body1">
-                    {aBlogCardProps.description}
+                    {aBlogCardProps.Description}
                 </Typography>
             </Stack>
         </div>

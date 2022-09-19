@@ -9,22 +9,22 @@ interface IWorkDetailProps
 
 const WorkDetail = (aWorkDetailProps: IWorkDetailProps) =>
 {
-    const { company, position, description, fromDate, toDate } = aWorkDetailProps.data;
+    const { Name, Position, Responsibities, FromDate, ToDate } = aWorkDetailProps.data;
 
     return (
         <Stack direction="column" paddingTop={2}>
             <div style={{ width: "685px", borderBottom: `1px solid ${SECONDARY_COLOR}` }}>
                 <Stack direction="row" justifyContent="space-between">
                     <Typography variant="h3">
-                        {company} | {position}
+                        {Name} | {Position}
                     </Typography>
                     <Typography variant="body1" paddingTop={2.2}>
-                        {fromDate} - {toDate}
+                        {FromDate} - {ToDate}
                     </Typography>
                 </Stack>
             </div>
             <div style={{ paddingTop: 5, paddingBottom: 5 }}>
-            {description.map((aResponsiblity: string) =>
+            {Responsibities.map((aResponsiblity: string) =>
             {
                 return <Typography> 👉 {aResponsiblity} </Typography>
             })}

@@ -1,8 +1,8 @@
 export interface IWorkExperience
 {
-    company: string;
-    position: string;
-    description: string[];
-    fromDate: string;
-    toDate: string;
+    Name: string;
+    Position: string;
+    Responsibities: string[];
+    FromDate: string;
+    ToDate: string;
 }

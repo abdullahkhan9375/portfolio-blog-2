@@ -1,15 +1,8 @@
-export type TLink =
-{
-    name: string;
-    link: string;
-};
-
 export interface IProject
 {
-    id: string;
-    name: string;
-    description: string;
-    features: string[];
-    techStack: string[];
-    links: TLink[];
+    Name: string;
+    Description: string;
+    Features: string[];
+    Github: string;
+    Website: string;
 }
