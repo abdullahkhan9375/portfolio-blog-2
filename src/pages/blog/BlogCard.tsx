@@ -5,6 +5,7 @@ import { SECONDARY_COLOR } from "@/Constants";
 
 interface IBlogCardProps extends IBlogPreview
 {
+    onSelectPost: (aPostId: string) => void;
     image?: string;
 }
 
@@ -21,7 +22,7 @@ export const BlogCard = (aBlogCardProps: IBlogCardProps) =>
                                 {aBlogCardProps.Name}
                             </Typography>
                         </Stack>
-                        <PageButton text="Read 📖" link={"abc"} style={{
+                        <PageButton text="Read 📖" onClick={() => aBlogCardProps.onSelectPost(aBlogCardProps.PostId) }  style={{
                             paddingTop: 8,
                             paddingBottom: 8,
                         }}/>

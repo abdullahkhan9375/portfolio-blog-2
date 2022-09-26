@@ -5,12 +5,12 @@ import { BlogCard } from "./BlogCard";
 interface IBlogPreviewProps
 {
     data: IBlogPreview[];
+    onSelectPost: ((aPostId: string) => void );
 }
 
 export const BlogPreview = (aBlogPreviewProps: IBlogPreviewProps) =>
 {
     const lBlogPreviews: IBlogPreview[] = aBlogPreviewProps.data;
-
     return (
         <Stack direction="column" spacing={1}>
             {lBlogPreviews.length === 0
@@ -19,7 +19,7 @@ export const BlogPreview = (aBlogPreviewProps: IBlogPreviewProps) =>
                   </Box>
                 : lBlogPreviews.map((aCard: IBlogPreview) =>
                 {
-                    return <BlogCard {...aCard}/>
+                    return <BlogCard {...aCard} onSelectPost={aBlogPreviewProps.onSelectPost}/>
                 })
             }
         </Stack>

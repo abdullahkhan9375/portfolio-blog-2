@@ -8,5 +8,11 @@ export interface IBlogPreview
     Genre: TOpinion;
     Date: string;
     TimeToRead: number;
-    PostId: number;
+    PostId: string;
+}
+
+export interface IBlogPost
+{
+    Title: string;
+    Body: string;
 }
